@@ -1,7 +1,9 @@
 from playingcards import Card
 
+# 6-8 decks
 class Chute:
-    def __init__(self, ordered: bool=False):
+    def __init__(self, decks: int=8, ordered: bool=False):
+        self.__validate_params
         self.ordered = ordered
 
     def generate_chute(self, decks: int, ordered: bool = False):

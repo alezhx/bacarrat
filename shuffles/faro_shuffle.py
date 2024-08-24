@@ -1,11 +1,27 @@
-def faro_shuffle(deck):
-    half = len(deck) // 2
-    left = deck[:half]
-    right = deck[half:]
+import random
+
+def faro_shuffle(cards:list, in_shuffle:bool=None):
+    half = len(cards)
+    left = cards[:half]
+    right = cards[half:]
+    shuffled = []
+
+    if in_shuffle is None:
+        in_shuffle = random.choice([True, False])
+
+    if in_shuffle:
+        # In-shuffle: Interleave starting with the second half
+        for l, r in zip(left, right):
+            shuffled.append(r)
+            shuffled.append(l)
+        if len(left) > len(right):
+            shuffled.append(left[-1])
+    else:
+        # Out-shuffle: Interleave starting with the first half
+        for l, r in zip(left, right):
+            shuffled.append(l)
+            shuffled.append(r)
+        if len(left) > len(right):
+            shuffled.append(left[-1])
     
-    shuffled_deck = []
-    for l, r in zip(left, right):
-        shuffled_deck.append(l)
-        shuffled_deck.append(r)
-        
-    return shuffled_deck
+    return shuffled

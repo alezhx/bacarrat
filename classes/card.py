@@ -1,3 +1,5 @@
+
+
 class Card:
     def __init__(self, value: int, suit: int, deck_id: int = None) -> None:
         self.__validate_params(value, suit)

@@ -10,5 +10,7 @@ def simulate_shuffle(cards):
     cards = overhand_shuffle(cards)
     cards = fisher_yates_shuffle(cards)
     cards = riffle_shuffle(cards)
+    cards = fisher_yates_shuffle(cards)
+    cards = riffle_shuffle(cards)
 
     return cards
