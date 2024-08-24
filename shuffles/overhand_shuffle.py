@@ -1,3 +1,5 @@
+import random
+
 def overhand_shuffle(deck):
     shuffled_deck = []
     while deck:
