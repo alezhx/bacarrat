@@ -3,7 +3,7 @@
 class Card:
     def __init__(self, value: int, suit: int, deck_id: int = None) -> None:
         self.__validate_params(value, suit)
-        self .deck_id = deck_id
+        self.deck_id = deck_id
         self.value = value
         self.suit = suit
         self.suit_name = self.__convert_suit()

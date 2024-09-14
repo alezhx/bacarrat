@@ -1,4 +1,5 @@
 import random
+from shuffles import faro_shuffle, fisher_yates_shuffle, overhand_shuffle, riffle_shuffle
 
 class Shuffler:
     def __init__(self, cards):
@@ -51,11 +52,13 @@ class Shuffler:
     #     self.cards = shuffled
 
     def shuffle(self):
-        # Apply a sequence of shuffles to simulate a casino-style shuffler
-        self.fisher_yates_shuffle()  # Start with Fisher-Yates for thorough randomness
-        self.faro_shuffle(in_shuffle=True)  # Apply Faro shuffle
-        self.riffle_shuffle()  # Perform riffle shuffle
-        self.overhand_shuffle()  # Apply overhand shuffle
-        self.riffle_shuffle()  # Perform riffle shuffle again
-        self.fisher_yates_shuffle()  # End with Fisher-Yates for additional randomness
-        return self.cards
+        shuffle_order = [
+            fisher_yates_shuffle,
+            faro_shuffle,
+            riffle_shuffle,
+            overhand_shuffle,
+            riffle_shuffle,
+            fisher_yates_shuffle,
+        ]
+        for shuffle in shuffle_order:
+            self.cards = shuffle(self.cards)
