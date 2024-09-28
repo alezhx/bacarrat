@@ -2,6 +2,7 @@ import random
 import math
 from classes import Shoe
 from playingcards import Card
+from games import StandardBaccaratGame
 
 # class BaccaratConfig():
 #     def __init__(self) -> None:
@@ -19,11 +20,11 @@ def prepare_bacarrat_shoe(deck_count=8, shuffle_type="HAND"):
 
     return shoe
 
-from typing import Callable
-def standard_variation_game(shoe: Shoe):
-    card = shoe.deal_card()
-    print(card.name)
-    print(card.img)
+# from typing import Callable
+# def standard_variation_game(shoe: Shoe):
+#     card = shoe.deal_card()
+#     print(card.name)
+#     print(card.img)
 
 
 def baccarat(config={}):
@@ -34,7 +35,8 @@ def baccarat(config={}):
     game_counter = 0
     while True:
         try:
-            standard_variation_game(shoe)
+            game = StandardBaccaratGame(shoe=shoe)
+            game.play_round()
         except Exception as e:
             print(e)
             raise e
