@@ -2,17 +2,15 @@ from playingcards import Card, Deck
 from classes import Shuffler
 
 # 6-8 deck_count
-class Chute:
-    def __init__(self, deck_count: int = 8, shuffle_type: str = "HAND", cut_position: int = -1):
-        self.cards = self._generate_chute(deck_count, shuffle_type)
-        self.total_cards = len(self.cards)  # Total number of cards in the chute
-        self.game_in_progress = False
-
-        self.cut_position = cut_position if cut_position != -1 else self.total_cards
+class Shoe:
+    def __init__(self, deck_count: int = 8, shuffle_type: str = "HAND"):
+        self.cards = self._generate_shoe(deck_count, shuffle_type)
+        self.total_cards = len(self.cards)  # Total number of cards in the shoe
+        # self.cut_position = self.total_cards
         self.deal_index = 0  # Pointer to track the current card being dealt
 
-    def _generate_chute(self, deck_count: int, shuffle_type: str = "HAND"):
-        """Generate and shuffle the chute with the specified number of decks."""
+    def _generate_shoe(self, deck_count: int, shuffle_type: str = "HAND"):
+        """Generate and shuffle the shoe with the specified number of decks."""
         if shuffle_type == "HAND":
             return [self._shuffle_deck(Deck().cards) for _ in range(deck_count)]
         if shuffle_type == "ELECTRONIC":
@@ -24,11 +22,18 @@ class Chute:
         shuffler = Shuffler(cards=deck)
         shuffler.shuffle()
         return deck
+    
+    def add_cut_card(self, cut_position):
+        """Inject "X_CARD" into the list of cards at the specified cut position."""
+        if cut_position < 0 or cut_position > self.total_cards:
+            raise IndexError("Cut position out of bounds.")
+
+        self.cards.insert(cut_position, "X_CARD")  # Insert "X_CARD" at the specified position
 
     def deal_card(self):
-        """Deal one card from the chute and track how many cards have been dealt."""
+        """Deal one card from the shoe and track how many cards have been dealt."""
         if self.deal_index >= len(self.cards):
-            raise Exception("No more cards in the chute.")
+            raise Exception("No more cards in the shoe.")
         
         # Deal the card at the current index, without modifying the list
         card = self.cards[self.deal_index]

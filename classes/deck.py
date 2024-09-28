@@ -6,7 +6,7 @@ class Deck:
         self.__validate_params()
         self.ordered = ordered
 
-    def generate_chute(self, decks: int, ordered: bool = False):
+    def generate_shoe(self, decks: int, ordered: bool = False):
         pass
 
     def remove_card(self, position):
