@@ -1,5 +1,6 @@
 from playingcards import Deck
 from collections import Counter
+from . import shuffler
 
 # 6-8 deck_count
 class Shoe:
@@ -32,10 +33,9 @@ class Shoe:
 
     def _shuffle_deck(self, deck):
         """Shuffle a single deck or a list of decks."""
-        from classes import Shuffler
-        shuffler = Shuffler(cards=deck)
-        shuffler.shuffle()
-        return shuffler.cards
+        _shuffler = shuffler.Shuffler(cards=deck)
+        _shuffler.shuffle()
+        return _shuffler.cards
     
     def add_cut_card(self, cut_position):
         """Inject "X_CARD" into the list of cards at the specified cut position."""

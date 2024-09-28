@@ -1,18 +1,7 @@
-# from playingcards import Card
-# from shuffles.best_shuffle import simulate_shuffle
+from playingcards import Deck as Deck_
+from . import card
 
-# class Deck:
-#     def __init__(self, ordered: bool=False):
-#         self.__validate_params()
-#         self.ordered = ordered
-
-#     def generate_shoe(self, decks: int, ordered: bool = False):
-#         pass
-
-#     def remove_card(self, position):
-#         self.cards.pop(position)
-
-#     def order_cards(self):
-#         if not self.ordered:
-#             self.cards.sort()
-#             self.ordered = True
+class Deck(Deck_):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.cards = [card.Card(value=c.value, suit=c.suit, deck=self) for c in self.cards]

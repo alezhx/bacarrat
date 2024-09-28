@@ -36,7 +36,8 @@ def baccarat(config={}):
     while True:
         try:
             game = StandardBaccaratGame(shoe=shoe)
-            game.play_round()
+            result = game.play_round()
+            print(f"GAME RESULT {result=}")
         except Exception as e:
             print(e)
             raise e
