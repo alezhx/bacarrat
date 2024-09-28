@@ -1,13 +1,12 @@
-from playingcards import Deck
 from collections import Counter
-from . import shuffler
+from . import shuffler, deck
 
 # 6-8 deck_count
 class Shoe:
     def __init__(self, deck_count: int = 8, shuffle_type: str = "HAND"):
         self.cards = self._generate_shoe(deck_count, shuffle_type)
         self.total_cards = len(self.cards)  # Total number of cards in the shoe
-        print(f"{self.total_cards=}")
+        # print(f"{self.total_cards=}")
         # self.cut_position = self.total_cards
         self.deal_index = 0  # Pointer to track the current card being dealt
 
@@ -16,7 +15,7 @@ class Shoe:
 
     def _generate_shoe(self, deck_count: int, shuffle_type: str = "HAND"):
         """Generate and shuffle the shoe with the specified number of decks."""
-        base_deck = Deck().cards  # Get the base deck once
+        base_deck = deck.Deck().cards  # Get the base deck once
         # shuffle_type = "asdasdadasd"
         if shuffle_type == "HAND":
             # Create the shoe by repeating and shuffling the base deck
@@ -57,7 +56,7 @@ class Shoe:
     
     def _validate_shoe(self, deck_count: int):
         """Validate the generated shoe to ensure it contains the correct counts of all expected cards."""
-        base_deck = Deck().cards
+        base_deck = deck.Deck().cards
         expected_count = deck_count# Each card type 1/52 should be seen deck_count times
 
         actual_count = Counter([str(c) for c in self.cards])  # Count occurrences of each card in the shoe
