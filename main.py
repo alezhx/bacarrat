@@ -20,6 +20,7 @@ def prepare_bacarrat_shoe(deck_count=8, shuffle_type="HAND"):
 
 
 def baccarat(config={}):
+    print("STARTING")
     shoe = prepare_bacarrat_shoe()
 
     while True:
@@ -29,4 +30,4 @@ def baccarat(config={}):
         except Exception as e:
             print(e)
     
-
+baccarat()

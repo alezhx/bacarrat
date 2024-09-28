@@ -17,5 +17,5 @@ def riffle_shuffle_deck(deck):
 
 def riffle_shuffle(deck, times=7):
     for _ in range(times):
-        deck = riffle_shuffle(deck)
+        deck = riffle_shuffle_deck(deck)
     return deck
